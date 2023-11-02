@@ -1,0 +1,57 @@
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.dialog-container {
+  width: 50vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 10000;
+}
+
+h2 {
+  text-align: center;
+}
+
+#filterSwitcher {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.filtersDiv {
+  background-color: cornflowerblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  flex: 1;
+}
+
+.oneFilter {
+  padding: 5px;
+  display: flex;
+  border: 2px solid #355ca3;
+  border-radius: 25%;
+  justify-content: center;
+}
+
+img {
+  cursor: pointer;
+}
+
+.oneFilter.checked {
+  background-color: #b3ceff;
+}

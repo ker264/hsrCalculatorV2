@@ -10,7 +10,7 @@ import { CSupportAbility } from "./c-support-ability";
 import { CTrace } from "./c-trace";
 
 export class CCharacter {
-  name: string = "";
+  name: string = "default";
   rarity: ERarity = ERarity.star4;
   path: EPath = EPath.abundance;
   element: EElement = EElement.physical;
@@ -18,13 +18,11 @@ export class CCharacter {
   hp: number = 0;
   def: number = 0;
   spd: number = 0;
-  lightcone: CLightcone = new CLightcone();
   traces: CTrace[] = [];
   basic: CAbility = new CAbility();
   skill: CAbility = new CAbility();
   ult: CAbility = new CAbility();
   talent: CAbility = new CAbility();
-  relicSet: CRelicSet = new CRelicSet();
   supportAbilities: CSupportAbility[] = [];
-  setEffects: CSetEffect[] = [];
+  img: string = "";
 }

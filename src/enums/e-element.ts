@@ -1,9 +1,9 @@
 export enum EElement {
-  physical,
-  fire,
-  ice,
-  lightning,
-  wind,
-  quantum,
-  imaginary,
+  physical = "physical",
+  fire = "fire",
+  ice = "ice",
+  lightning = "lightning",
+  wind = "wind",
+  quantum = "quantum",
+  imaginary = "imaginary",
 }

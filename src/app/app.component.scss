@@ -1,0 +1,60 @@
+.layoutDiv {
+  display: flex;
+}
+
+.innerDiv {
+  padding: 1vmin;
+  flex-direction: column;
+}
+
+#mainDiv {
+  flex-direction: column;
+  height: 100vh;
+}
+
+#leftBot,
+#middleBot,
+#rightBot {
+  width: 33%;
+}
+
+#allays button {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+}
+
+button img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+  border-radius: 50%;
+}
+
+#settings,
+#log {
+  width: 40%;
+}
+#combatants {
+  width: 20%;
+}
+
+#top,
+#bot {
+  height: 50%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#lightcones {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vh;
+  button {
+    width: 48px;
+    height: 48px;
+    padding: 0;
+  }
+}

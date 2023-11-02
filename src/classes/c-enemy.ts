@@ -1,0 +1,27 @@
+export class CEnemy {
+  isAcrive: boolean = true;
+  lvl: number = 80;
+  tenacityMaxlevel: number = 180;
+  isTenacityBroken: boolean = false;
+  defShred: number = 0;
+  resPhys: number = 20;
+  resFire: number = 20;
+  resIce: number = 20;
+  resLightning: number = 20;
+  resWind: number = 20;
+  resQuantum: number = 20;
+  resImaginary: number = 20;
+  dmgTakenAll: number = 0;
+  dmgTakenBasic: number = 0;
+  dmgTakenSkill: number = 0;
+  dmgTakenUlt: number = 0;
+  dmgTakenDot: number = 0;
+  dmgTakenFollowUp: number = 0;
+  weaknessPhys: boolean = false;
+  weaknessFire: boolean = false;
+  weaknessIce: boolean = false;
+  weaknessLightning: boolean = false;
+  weaknessWind: boolean = false;
+  weaknessQuantum: boolean = false;
+  weaknessImaginary: boolean = false;
+}

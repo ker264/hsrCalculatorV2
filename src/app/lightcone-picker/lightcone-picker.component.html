@@ -1,0 +1,11 @@
+<div class="dialog-overlay" (click)="close()">
+  <div class="dialog-container" onclick="event.stopPropagation()">
+    <h2>Выбери конус</h2>
+
+    <div class="lighcones-grid-container">
+      <div class="grid-item" *ngFor="let item of allLightcones | lcFilter : charPath : rarityFilters">
+        <img src="{{ item.pictureUrl }}" alt="{{ item.name }}" width="90px" height="90px" (click)="setLightcone(item)" />
+      </div>
+    </div>
+  </div>
+</div>

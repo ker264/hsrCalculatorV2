@@ -1,9 +1,9 @@
 export enum EPath {
-  destruction,
-  hunt,
-  erudition,
-  harmony,
-  nihility,
-  preservation,
-  abundance,
+  destruction = "destruction",
+  hunt = "hunt",
+  erudition = "erudition",
+  harmony = "harmony",
+  nihility = "nihility",
+  preservation = "preservation",
+  abundance = "abundance",
 }

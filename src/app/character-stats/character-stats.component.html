@@ -1,0 +1,15 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="4">Статы</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stat of stats.stats">
+      <td>{{ stat.name }}</td>
+      <td class="values">{{ stat.value }}</td>
+      <td class="values">v</td>
+      <td class="values">v</td>
+    </tr>
+  </tbody>
+</table>

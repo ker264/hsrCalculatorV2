@@ -1,0 +1,27 @@
+<div class="dialog-overlay" (click)="close()">
+  <div class="dialog-container" onclick="event.stopPropagation()">
+    <h2>Выбери героя</h2>
+
+    <input type="text" id="nameFilter" class="form-control" placeholder="Search..." [(ngModel)]="nameFilter" />
+
+    <div id="filterSwitcher">
+      <div class="filtersDiv">
+        <div *ngFor="let item of pathFilters" class="oneFilter" [ngClass]="{ checked: item.isChosen }" (click)="switchPathFilter(item)">
+          <img width="36px" src="{{ item.img }}" />
+        </div>
+      </div>
+
+      <div class="filtersDiv">
+        <div *ngFor="let item of elementFilters" class="oneFilter" [ngClass]="{ checked: item.isChosen }" (click)="switchElementFilter(item)">
+          <img width="36px" src="{{ item.img }}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="characters-grid-container">
+      <div class="grid-item" *ngFor="let item of allCharacters | charFilter : pathFilters : elementFilters : nameFilter : applyFilter">
+        <img src="{{ item.img }}" alt="{{ item.name }}" width="90px" height="90px" (click)="setCharacter(item)" />
+      </div>
+    </div>
+  </div>
+</div>
