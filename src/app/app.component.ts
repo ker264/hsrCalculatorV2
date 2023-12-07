@@ -24,6 +24,16 @@ export class AppComponent {
 
   //Тестовые параметры под удаление потом
 
+  // Данные для html разметки
+  relicDiv: { name: string; img: string }[] = [
+    { name: "Head", img: "assets/relicParts/IconRelicHead.png" },
+    { name: "Hands", img: "assets/relicParts/IconRelicHands.png" },
+    { name: "Body", img: "assets/relicParts/IconRelicBody.png" },
+    { name: "Foot", img: "assets/relicParts/IconRelicFoot.png" },
+    { name: "Sphere", img: "assets/relicParts/IconRelicSphere.png" },
+    { name: "Rope", img: "assets/relicParts/IconRelicRope.png" },
+  ];
+
   // Параметры боя
   character?: CCharacter;
   lightcone: CLightcone = new CLightcone();
@@ -50,5 +60,9 @@ export class AppComponent {
 
   chooseLightcone() {
     this.stateManager.switchState(EMainPageStates.pickLightcone);
+  }
+
+  chooseRelics() {
+    this.stateManager.switchState(EMainPageStates.pickRelics);
   }
 }

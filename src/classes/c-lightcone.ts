@@ -1,7 +1,11 @@
+import { ECondition } from "src/enums/e-condition";
 import { ELcNames } from "src/enums/e-lc-names";
 import { EPath } from "src/enums/e-path";
 import { ERarity } from "src/enums/e-rarity";
-import { CEffect } from "./c-effect";
+import { IBaseStat } from "src/interfaces/i-base-stats-combined";
+import { IConditionalEffect } from "src/interfaces/i-conditional-effect";
+import { CAdditionalInfo } from "./c-additional-info";
+import { CStatsCalculator } from "./c-visible-stats";
 
 export class CLightcone {
   name: string = ELcNames.notChosen;
@@ -15,9 +19,11 @@ export class CLightcone {
   def: number = 0;
   refinment: number = 1;
   numbers: number[][] = [];
-  effects: CEffect[] = [];
+  effects: CAdditionalInfo[] = [];
   pictureUrl: string = "assets/lightcones/Nothing.png";
   isSupportable: boolean = false;
+  unconditionalEffects: IBaseStat[] = [];
+  conditionalEffects: IConditionalEffect[] = [];
 
   getNum(num: number) {
     return this.numbers[num][this.refinment - 1];
@@ -32,6 +38,8 @@ export class CLightcone {
     def: number;
     isSupportable: boolean;
     numbers: number[][];
+    unconditionalEffects?: IBaseStat[];
+    conditionalEffects?: IConditionalEffect[];
     description: () => string;
   }) {
     if (!params) return;
@@ -46,5 +54,8 @@ export class CLightcone {
     this.numbers = params.numbers;
     this.pictureUrl = `assets/lightcones/${params.name}.webp`;
     this.description = params.description;
+
+    if (params.unconditionalEffects) this.unconditionalEffects = params.unconditionalEffects;
+    if (params.conditionalEffects) this.conditionalEffects = params.conditionalEffects;
   }
 }

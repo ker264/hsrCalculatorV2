@@ -5,11 +5,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let stat of stats.stats">
+    <tr *ngFor="let stat of stats">
       <td>{{ stat.name }}</td>
-      <td class="values">{{ stat.value }}</td>
-      <td class="values">v</td>
-      <td class="values">v</td>
+      <td class="values">{{ stat.base }}</td>
+      <td class="values">{{ stat.additional.toFixed(2) }}</td>
+      <td class="values">{{ stat.sum.toFixed(2) }}</td>
     </tr>
   </tbody>
 </table>

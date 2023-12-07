@@ -26,7 +26,7 @@ export class LightconePickerComponent {
     { rarity: ERarity.star3, isChosen: false, img: "assets/elements/IconWhiteFire.png" },
     { rarity: ERarity.star4, isChosen: false, img: "assets/elements/IconWhiteFire.png" },
     { rarity: ERarity.star5, isChosen: false, img: "assets/elements/IconWhiteFire.png" },
-  ];
+  ]; // TODO Добавить фильтр редкости к выбору конуса
 
   // Переключить переменную для применения фильтра
   applyFilter: boolean = false;

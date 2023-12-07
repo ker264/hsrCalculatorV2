@@ -1,6 +1,7 @@
 import { CAbility } from "src/classes/c-ability";
 import { CCharacter } from "src/classes/c-character";
 import { ECharNames } from "src/enums/e-char-names";
+import { EEffectorsNames } from "src/enums/e-effectors-names";
 import { EElement } from "src/enums/e-element";
 import { EPath } from "src/enums/e-path";
 import { ERarity } from "src/enums/e-rarity";
@@ -18,6 +19,7 @@ let charSeele: CCharacter = {
   hp: 931,
   spd: 115,
 
+  // TODO Сделать вывод способностей и добавить условные статы от них
   // Способности
   basic: new CAbility(),
   skill: new CAbility(),
@@ -26,7 +28,11 @@ let charSeele: CCharacter = {
   supportAbilities: [],
 
   // Статы от трейсов
-  traces: [],
+  traces: [
+    { statChangeDescription: EEffectorsNames.defPercentage, statChangeValue: 12.5 },
+    { statChangeDescription: EEffectorsNames.atkPercentage, statChangeValue: 28 },
+    { statChangeDescription: EEffectorsNames.critDmg, statChangeValue: 24 },
+  ],
 };
 
 export default charSeele;

@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
 import { Subscription } from "rxjs";
-import { CCharacter } from "src/classes/c-character";
-import { CLightcone } from "src/classes/c-lightcone";
-import { CVisibleStats } from "src/classes/c-visible-stats";
-import { ELcNames } from "src/enums/e-lc-names";
+import { CBaseStatsCombined } from "src/classes/c-base-stats-combined";
+import { CStatsCalculator } from "src/classes/c-visible-stats";
+import { IVisibleStats } from "src/interfaces/i-visible-stats";
 import { BattleServiceService } from "src/services/battle-service.service";
 
 @Component({
@@ -15,24 +14,10 @@ export class CharacterStatsComponent {
   subs: Subscription;
 
   // Статы
-  stats: CVisibleStats = new CVisibleStats();
+  stats: IVisibleStats[] = CStatsCalculator.getPlaceholderStats();
 
   constructor(private battleManager: BattleServiceService) {
     // Работа с сервисом
-    this.subs = battleManager.character$.subscribe((char) => this.manageNewCharacter(char));
-    this.subs = battleManager.lightcone$.subscribe((lc) => this.manageNewLighcone(lc));
-  }
-
-  private manageNewCharacter(char: CCharacter | undefined) {
-    if (!char) {
-      this.stats.nulifyStats();
-      return;
-    }
-    this.stats.setStatsFromCharacter(char);
-  }
-
-  private manageNewLighcone(lc: CLightcone) {
-    if (lc.name == ELcNames.notChosen) return;
-    console.log(lc);
+    this.subs = battleManager.visibleBaseStats$.subscribe((newStats) => (this.stats = newStats));
   }
 }

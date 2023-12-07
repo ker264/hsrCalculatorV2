@@ -1,4 +1,4 @@
-export enum EPossibleSubStats {
+export enum EPossibleRelicStats {
   atk = "atk",
   atkPercentage = "atkPercentage",
   hp = "hp",
@@ -6,8 +6,12 @@ export enum EPossibleSubStats {
   def = "def",
   defPercentage = "defPercentage",
   spd = "spd",
-  breakEffect = "breakEffect",
   critRate = "critRate",
   critDmg = "critDmg",
   effectHitRate = "effectHitRate",
+  effectResistance = "effectResistance",
+  breakEffect = "breakEffect",
+  dmgBonus = "dmgBonus",
+  energyRegenerationRate = "energyRegenerationRate",
+  outgoingHealingBoost = "outgoingHealingBoost",
 }

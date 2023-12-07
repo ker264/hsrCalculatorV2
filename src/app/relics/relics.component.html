@@ -1,0 +1,21 @@
+<div class="dialog-overlay" (click)="close()">
+  <div class="dialog-container" onclick="event.stopPropagation()">
+    <h2>Выбор реликвий</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Собака</th>
+          <th>Кот</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of relicDiv" class="oneRelicPart">
+          <td class="relicIcon"><img width="36px" height="36px" src="{{ item.img }}" /></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

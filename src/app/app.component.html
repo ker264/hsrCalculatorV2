@@ -10,25 +10,25 @@
           <ng-template #chooseheroText>Выбрать</ng-template>
         </button>
       </div>
-      <button class="btn btn-outline-primary" (click)="testMove()">ClickMe</button>
     </div>
-    <div id="settings" class="layoutDiv innerDiv">
-      Настройки
-      <!-- <div><input type="number" min="1" max="5" step="1" [(ngModel)]="testLC.refinment" /></div>
-      <div>{{ testLC.description() }}</div> -->
-    </div>
+    <div id="settings" class="layoutDiv innerDiv">Настройки</div>
   </div>
   <div id="bot" class="layoutDiv">
-    <div id="leftBot" class="layoutDiv innerDiv botLayout"><app-character-stats></app-character-stats></div>
-    <div id="middleBot" class="layoutDiv innerDiv botLayout">
+    <div id="leftBot" class="layoutDiv innerDiv"><app-character-stats></app-character-stats></div>
+    <div id="middleBot" class="layoutDiv innerDiv">
       <div id="lightcones" class="layoutDiv" (click)="chooseLightcone()">
         <button class="btn btn-outline-secondary"><img src="{{ lightcone.pictureUrl }}" /></button>
         <div>{{ lightcone.name }}</div>
       </div>
-      <div id="relics" class="layoutDiv">Релики</div>
+      <div id="relics" class="layoutDiv">
+        <div *ngFor="let item of relicDiv" class="oneRelicPart" (click)="chooseRelics()">
+          <img width="36px" height="36px" src="{{ item.img }}" />
+        </div>
+      </div>
       <div id="skills" class="layoutDiv">Способность</div>
     </div>
-    <div id="rightBot" class="layoutDiv innerDiv botLayout">
+
+    <div id="rightBot" class="layoutDiv innerDiv">
       <div id="supRelics" class="layoutDiv">Релики саппортов</div>
       <div id="supLС" class="layoutDiv">Конусы сапортов</div>
     </div>
@@ -37,3 +37,4 @@
 
 <app-hero-picker *ngIf="mainPageState == 'pickHero'"></app-hero-picker>
 <app-lightcone-picker *ngIf="mainPageState == 'pickLightcone'"></app-lightcone-picker>
+<app-relics *ngIf="mainPageState == 'pickRelics'"></app-relics>

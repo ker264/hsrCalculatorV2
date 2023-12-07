@@ -8,9 +8,10 @@ import { CharFilterPipe } from "../pipes/char-filter.pipe";
 import { CharacterStatsComponent } from "./character-stats/character-stats.component";
 import { LightconePickerComponent } from "./lightcone-picker/lightcone-picker.component";
 import { LcFilterPipe } from "../pipes/lc-filter.pipe";
+import { RelicsComponent } from './relics/relics.component';
 
 @NgModule({
-  declarations: [AppComponent, HeroPickerComponent, CharFilterPipe, CharacterStatsComponent, LightconePickerComponent, LcFilterPipe],
+  declarations: [AppComponent, HeroPickerComponent, CharFilterPipe, CharacterStatsComponent, LightconePickerComponent, LcFilterPipe, RelicsComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
