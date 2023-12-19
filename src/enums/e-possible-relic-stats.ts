@@ -13,5 +13,5 @@ export enum EPossibleRelicStats {
   breakEffect = "breakEffect",
   energyRegenerationRate = "energyRegenerationRate",
   outgoingHealingBoost = "outgoingHealingBoost",
-  dmgBonus = "dmgBonus",
+  dmgBoostAll = "dmgBoostAll",
 }

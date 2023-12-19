@@ -7,27 +7,40 @@ import { CBaseStatsCombined } from "./c-base-stats-combined";
 import { CCharacter } from "./c-character";
 import { CEffectorsAndValues } from "./c-effectors-and-values";
 import { CLightcone } from "./c-lightcone";
+import { CRelicSet } from "./c-relic-set";
 
 export class CStatsCalculator {
   // Базовые статы
-  baseStats: CBaseStatsCombined = new CBaseStatsCombined();
-  charBase: CBaseStatsCombined = new CBaseStatsCombined();
-  weaponBase: CBaseStatsCombined = new CBaseStatsCombined();
+  baseStats: CBaseStatsCombined;
+  charBase: CBaseStatsCombined;
+  weaponBase: CBaseStatsCombined;
 
   // Дополнительные статы
-  additionalStats: CBaseStatsCombined = new CBaseStatsCombined();
+  additionalStats: CBaseStatsCombined;
 
   // Суммарные статы
-  sumStats: CBaseStatsCombined = new CBaseStatsCombined();
+  sumStats: CBaseStatsCombined;
   // conditionalStats: CBaseStatsCombined = new CBaseStatsCombined();
 
-  allEffectors: CEffectorsAndValues = new CEffectorsAndValues();
+  allEffectors: CEffectorsAndValues;
 
-  currentLC: CLightcone = new CLightcone();
+  currentLC: CLightcone;
 
   conditionalEffects: IConditionalEffect[] = [];
 
-  constructor() {}
+  constructor();
+  constructor(data: CStatsCalculator);
+  constructor(data?: CStatsCalculator) {
+    // Базовая инициализация
+    this.baseStats = new CBaseStatsCombined();
+    this.charBase = new CBaseStatsCombined();
+    this.weaponBase = new CBaseStatsCombined();
+    this.additionalStats = new CBaseStatsCombined();
+    this.sumStats = new CBaseStatsCombined();
+
+    this.allEffectors = new CEffectorsAndValues();
+    this.currentLC = new CLightcone();
+  }
 
   setStatsFromCharacter(char: CCharacter) {
     this.charBase.nulifyStats();
@@ -67,6 +80,19 @@ export class CStatsCalculator {
     // Копируем данные конуса
     this.currentLC = lc;
     this.conditionalEffects.push(...this.currentLC.conditionalEffects);
+
+    // Пересчитываем статы
+    this.recalculateStats();
+  }
+
+  setStatsFromSet(set: CRelicSet) {
+    // Удаляем старые эффекторы от реликов и пишем новые
+    this.allEffectors.nulifyTypeEffector(EEffectorType.relicsEffectors);
+    for (let part of set.getRelicsAsArray()) {
+      for (let effect of part.subStats) {
+        this.allEffectors.addStatByNameToType(EEffectorType.relicsEffectors, effect.name, effect.value);
+      }
+    }
 
     // Пересчитываем статы
     this.recalculateStats();

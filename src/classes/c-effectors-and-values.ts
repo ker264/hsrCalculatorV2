@@ -30,8 +30,6 @@ export class CEffectorsAndValues {
   }
 
   nulifyTypeEffector(type: EEffectorType) {
-    console.log(type);
-    console.log(this.partialEffectors);
     this.partialEffectors
       .find((item) => item.name == type)!
       .effector.forEach((element) => {

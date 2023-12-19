@@ -21,9 +21,6 @@ export class LcFilterPipe implements PipeTransform {
       }
     }
 
-    console.log(path);
-    console.log(isFilterByRarity);
-
     // Возврат если путь не задан (не выбран персонаж)
     if (path == undefined) return lightcones;
 

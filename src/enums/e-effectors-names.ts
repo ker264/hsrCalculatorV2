@@ -33,4 +33,6 @@ export enum EEffectorsNames {
   elementPenWind = "elementPenWind",
   elementPenQuantum = "elementPenQuantum",
   elementPenImaginary = "elementPenImaginary",
+  energyRegenerationRate = "energyRegenerationRate",
+  outgoingHealingBoost = "outgoingHealingBoost",
 }

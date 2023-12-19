@@ -59,7 +59,7 @@ export class CRelic {
             imgPath = "assets/stats/IconBreakUp.png";
             break;
 
-          case EPossibleRelicStats.dmgBonus:
+          case EPossibleRelicStats.dmgBoostAll:
             imgPath = "assets/stats/IconQuantumAddedRatio.png";
             break;
 

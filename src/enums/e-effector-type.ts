@@ -1,6 +1,6 @@
 export enum EEffectorType {
   lcEffectors = "lcEffectors",
   traceEffectors = "traceEffectors",
-  reilcsEffectors = "reilcsEffectors",
+  relicsEffectors = "relicsEffectors",
   setEffectors = "setEffectors",
 }

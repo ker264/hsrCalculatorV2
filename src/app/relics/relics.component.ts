@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { debounce } from "lodash";
 import { CRelic } from "src/classes/c-relic";
 import { CRelicSet } from "src/classes/c-relic-set";
 import { CStat } from "src/classes/c-stat";
@@ -28,15 +29,12 @@ export class RelicsComponent {
     setPart.subStats.find((item) => item.name == setPart.mainStat)!.value = 0;
     setPart.mainStat = <EPossibleRelicStats>subStat.name;
     subStat.value = mainRelicStats.find((item) => item.name == subStat.name)!.value;
+    this.debouncedUpdate();
   }
 
   //TODO Доделать интерфейс, добавить кнопку удаления в правый столбец
 
   constructor(private stateManager: MainFormStateManagerService, private battleManager: BattleServiceService, private lsService: LocalStorageService) {
-    //TODO Написать чтение данных из localStorage для CRelicSet
-    let data = lsService.getData("testSet");
-    this.battleManager.relicSet = new CRelicSet(data);
-
     this.relicSet = battleManager.relicSet;
   }
 
@@ -53,6 +51,15 @@ export class RelicsComponent {
   }
 
   loadSet() {
-    this.lsService.setData("testSet", this.relicSet);
+    // TODO Добавить dropdown menu на загрузку
+    let data = this.lsService.getData("testSet");
+    if (data) this.battleManager.relicSet = new CRelicSet(data);
+    this.relicSet = this.battleManager.relicSet;
+
+    this.debouncedUpdate();
+  }
+
+  debouncedUpdate() {
+    this.battleManager.setSet();
   }
 }

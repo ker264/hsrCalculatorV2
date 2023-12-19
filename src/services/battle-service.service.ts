@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { debounce } from "lodash";
 import { BehaviorSubject, Subject } from "rxjs";
 import { CBaseStatsCombined } from "src/classes/c-base-stats-combined";
 import { CCharacter } from "src/classes/c-character";
@@ -15,6 +16,12 @@ import { IVisibleStats } from "src/interfaces/i-visible-stats";
   providedIn: "root",
 })
 export class BattleServiceService {
+  // debouncer
+  private debouncedSetUpdate = debounce(() => {
+    this.stats.setStatsFromSet(this.relicSet);
+    this.visibleBaseStats.next(this.stats.getVisibleStats());
+  }, 500);
+
   // Параметры для расчета урона
   private character = new BehaviorSubject<CCharacter | undefined>(undefined);
   public character$ = this.character.asObservable();
@@ -42,6 +49,10 @@ export class BattleServiceService {
     this.lightcone.next(lightcone);
     this.stats.setStatsFromLC(lightcone);
     this.visibleBaseStats.next(this.stats.getVisibleStats());
+  }
+
+  public setSet() {
+    this.debouncedSetUpdate();
   }
 
   public getCurrentCharPath(): EPath | undefined {

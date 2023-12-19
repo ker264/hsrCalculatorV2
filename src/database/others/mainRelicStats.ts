@@ -11,7 +11,7 @@ const mainRelicStats: { name: EPossibleRelicStats; value: number }[] = [
   { name: EPossibleRelicStats.outgoingHealingBoost, value: 34.6 },
   { name: EPossibleRelicStats.effectHitRate, value: 43.2 },
   { name: EPossibleRelicStats.spd, value: 25 },
-  { name: EPossibleRelicStats.dmgBonus, value: 38.9 },
+  { name: EPossibleRelicStats.dmgBoostAll, value: 38.9 },
   { name: EPossibleRelicStats.breakEffect, value: 64.8 },
   { name: EPossibleRelicStats.energyRegenerationRate, value: 19.4 },
 ];

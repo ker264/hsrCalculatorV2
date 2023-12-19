@@ -51,7 +51,7 @@ export class CRelicSet {
         ],
       });
       this.sphere = new CRelic({
-        stats: [EPossibleRelicStats.hpPercentage, EPossibleRelicStats.atkPercentage, EPossibleRelicStats.defPercentage, EPossibleRelicStats.dmgBonus],
+        stats: [EPossibleRelicStats.hpPercentage, EPossibleRelicStats.atkPercentage, EPossibleRelicStats.defPercentage, EPossibleRelicStats.dmgBoostAll],
       });
 
       // Картинки

@@ -5,6 +5,7 @@
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingInput1" [(ngModel)]="relicSet.name" /> <label for="floatingInput1">Название сета</label>
       </div>
+
       <button class="btn btn-outline-primary" (click)="loadSet()"><img src="assets/common/IconDownArrows.png" /></button>
       <button class="btn btn-outline-primary" (click)="saveSet()"><img src="assets/common/IconSave.png" /></button>
     </div>
@@ -34,10 +35,11 @@
                       item.mainStat == oneStat.name ||
                       oneStat.name == 'energyRegenerationRate' ||
                       oneStat.name == 'outgoingHealingBoost' ||
-                      oneStat.name == 'dmgBonus'
+                      oneStat.name == 'dmgBoostAll'
                     "
                     type="number"
                     [(ngModel)]="oneStat.value"
+                    (change)="debouncedUpdate()"
                   />
                 </div>
                 <div class="radioDiv">
@@ -46,7 +48,7 @@
                     name="{{ item.setPart }}"
                     type="radio"
                     (change)="handleMainStatChange(oneStat, item)"
-                    checked
+                    [checked]="item.mainStat == oneStat.name"
                   />
                 </div>
               </div>
