@@ -1,21 +1,59 @@
 <div class="dialog-overlay" (click)="close()">
   <div class="dialog-container" onclick="event.stopPropagation()">
     <h2>Выбор реликвий</h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Собака</th>
-          <th>Кот</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of relicDiv" class="oneRelicPart">
-          <td class="relicIcon"><img width="36px" height="36px" src="{{ item.img }}" /></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="searhDiv" class="input-group mb-2">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput1" [(ngModel)]="relicSet.name" /> <label for="floatingInput1">Название сета</label>
+      </div>
+      <button class="btn btn-outline-primary" (click)="loadSet()"><img src="assets/common/IconDownArrows.png" /></button>
+      <button class="btn btn-outline-primary" (click)="saveSet()"><img src="assets/common/IconSave.png" /></button>
+    </div>
+    <div id="tableContainer">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="tableImgHeader" *ngFor="let oneStat of relicSet.head.subStats">
+              <div>
+                <img src="{{ oneStat.img }}" width="30px" height="30px" title="{{ oneStat.name }}" />
+                <span class="percentageSpan" *ngIf="oneStat.name.includes('Percentage')"><b>%</b></span>
+              </div>
+            </th>
+            <th class="tableImgHeader"><img src="assets/common/IconWarning.png" (click)="a()" /></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of relicSet.getRelicsAsArray()" role="group" class="oneRelicPart">
+            <td class="relicIcon"><img width="36px" height="36px" src="{{ item.relicImgSrc }}" /></td>
+            <td *ngFor="let oneStat of item.subStats">
+              <div class="subStatDiv">
+                <div>
+                  <input
+                    class="form-control subStatValueInput"
+                    [disabled]="
+                      item.mainStat == oneStat.name ||
+                      oneStat.name == 'energyRegenerationRate' ||
+                      oneStat.name == 'outgoingHealingBoost' ||
+                      oneStat.name == 'dmgBonus'
+                    "
+                    type="number"
+                    [(ngModel)]="oneStat.value"
+                  />
+                </div>
+                <div class="radioDiv">
+                  <input
+                    *ngIf="item.possibleMainStat.includes(oneStat.name)"
+                    name="{{ item.setPart }}"
+                    type="radio"
+                    (change)="handleMainStatChange(oneStat, item)"
+                    checked
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
