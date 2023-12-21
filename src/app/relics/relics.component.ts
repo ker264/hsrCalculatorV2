@@ -20,6 +20,9 @@ export class RelicsComponent {
   // Данные по реликвиям
   relicSet: CRelicSet;
 
+  setListInMemory: CRelicSet[] = [];
+  isSetEffectsMenuOpen: boolean = false;
+
   a() {
     console.log(this.relicSet);
     console.log(this.battleManager.relicSet);
@@ -36,6 +39,15 @@ export class RelicsComponent {
 
   constructor(private stateManager: MainFormStateManagerService, private battleManager: BattleServiceService, private lsService: LocalStorageService) {
     this.relicSet = battleManager.relicSet;
+
+    // Подгружаем список сетов из памяти
+    let data = this.lsService.getData("savedSetList");
+    if (data)
+      for (let item of data) {
+        this.setListInMemory.push(new CRelicSet(item));
+      }
+
+    this.debouncedUpdate();
   }
 
   /**
@@ -47,16 +59,36 @@ export class RelicsComponent {
 
   //TODO Вставить проверку на замену если имя сета соответствует уже существующему
   saveSet() {
-    this.lsService.setData("testSet", this.relicSet);
+    let setInMemory = this.setListInMemory.find((item) => item.name == this.relicSet.name);
+    if (setInMemory) {
+      if (!window.confirm(`Сет с таким именем будет заменен`)) return;
+
+      setInMemory = new CRelicSet(this.relicSet);
+    } else {
+      this.setListInMemory.push(new CRelicSet(this.relicSet));
+    }
+
+    this.lsService.setData("savedSetList", this.setListInMemory);
   }
 
-  loadSet() {
-    // TODO Добавить dropdown menu на загрузку
-    let data = this.lsService.getData("testSet");
-    if (data) this.battleManager.relicSet = new CRelicSet(data);
-    this.relicSet = this.battleManager.relicSet;
-
+  loadSet(chosenSet: CRelicSet) {
+    this.relicSet = chosenSet;
     this.debouncedUpdate();
+  }
+
+  deleteSavedSet(setForDelete: CRelicSet) {
+    if (!window.confirm(`Удалить сет?\n${setForDelete.name}`)) return;
+
+    this.setListInMemory.splice(
+      this.setListInMemory.findIndex((item) => item.name == setForDelete.name),
+      1
+    );
+    this.lsService.setData("savedSetList", this.setListInMemory);
+  }
+
+  manageSetEffectsMenu(state: boolean) {
+    console.log(state);
+    this.isSetEffectsMenuOpen = state;
   }
 
   debouncedUpdate() {

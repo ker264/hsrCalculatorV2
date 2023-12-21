@@ -46,6 +46,23 @@ td {
   text-align: center;
 }
 
+#setNameInput::after {
+  display: none;
+}
+
+#setList {
+  width: 100%;
+}
+
+.setDropDownItem {
+  display: flex;
+  padding-right: 5px;
+
+  button.btn {
+    border-width: 0px;
+  }
+}
+
 .percentageSpan {
   color: white;
   font-size: 20px;

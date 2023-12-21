@@ -1,13 +1,23 @@
 <div class="dialog-overlay" (click)="close()">
   <div class="dialog-container" onclick="event.stopPropagation()">
     <h2>Выбор реликвий</h2>
-    <div id="searhDiv" class="input-group mb-2">
-      <div class="form-floating">
+    <div id="searhDiv" class="input-group mb-2" ngbDropdown #myDrop="ngbDropdown">
+      <div class="form-floating" id="setNameInput" ngbDropdownAnchor>
         <input type="text" class="form-control" id="floatingInput1" [(ngModel)]="relicSet.name" /> <label for="floatingInput1">Название сета</label>
       </div>
-
-      <button class="btn btn-outline-primary" (click)="loadSet()"><img src="assets/common/IconDownArrows.png" /></button>
+      <button class="btn btn-outline-primary" (click)="manageSetEffectsMenu(true)"><img src="assets/common/IconSetEffects.png" /></button>
+      <button class="btn btn-outline-primary" (click)="myDrop.open()" id="dropdownLoadSets">
+        <img src="assets/common/IconDownArrows.png" />
+      </button>
       <button class="btn btn-outline-primary" (click)="saveSet()"><img src="assets/common/IconSave.png" /></button>
+
+      <!-- Список сетов -->
+      <div id="setList" ngbDropdownMenu aria-labelledby="dropdownLoadSets">
+        <div class="setDropDownItem" *ngFor="let item of setListInMemory">
+          <button ngbDropdownItem (click)="loadSet(item)">{{ item.name }}</button>
+          <button class="btn btn-outline-primary" (click)="deleteSavedSet(item)"><img src="assets/common/IconDelete.png" /></button>
+        </div>
+      </div>
     </div>
     <div id="tableContainer">
       <table class="table table-bordered">
@@ -59,3 +69,5 @@
     </div>
   </div>
 </div>
+
+<app-set-effects *ngIf="isSetEffectsMenuOpen" (closeEffectsMenu)="manageSetEffectsMenu($event)"></app-set-effects>
