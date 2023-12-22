@@ -3,4 +3,5 @@ export enum ECondition {
   useSkill,
   useUltimate,
   useFollowUp,
+  changedSetEfefcts,
 }

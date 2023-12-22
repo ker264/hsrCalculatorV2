@@ -57,7 +57,7 @@ export class RelicsComponent {
     this.stateManager.switchState(EMainPageStates.normal);
   }
 
-  //TODO Вставить проверку на замену если имя сета соответствует уже существующему
+  //TODO Переделать allDamage на урон типа персонажа, сделать замену иконки для персонажа, возможно сделать выбор типа урона в заголовке в виде выпадающего списка
   saveSet() {
     let setInMemory = this.setListInMemory.find((item) => item.name == this.relicSet.name);
     if (setInMemory) {
@@ -72,7 +72,9 @@ export class RelicsComponent {
   }
 
   loadSet(chosenSet: CRelicSet) {
-    this.relicSet = chosenSet;
+    this.battleManager.relicSet = chosenSet;
+    this.relicSet = this.battleManager.relicSet;
+
     this.debouncedUpdate();
   }
 

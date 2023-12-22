@@ -5,4 +5,5 @@ export interface IAdditionalCondition {
   description: string;
   minValue?: number;
   maxValue?: number;
+  value: number;
 }

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
+import { CSet } from "src/classes/c-set";
+import allSets from "src/database/relicSets/allSets";
 
 @Component({
   selector: "app-set-effects",
@@ -8,7 +10,11 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class SetEffectsComponent {
   @Output() closeEffectsMenu: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {}
+  allSetEffects: CSet[];
+
+  constructor() {
+    this.allSetEffects = allSets;
+  }
 
   /**
    * Закрыть окно выбора персонажа

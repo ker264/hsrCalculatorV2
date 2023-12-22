@@ -1,5 +1,19 @@
 <div class="dialog-overlay" (click)="close()">
   <div class="dialog-container" onclick="event.stopPropagation()">
     <h2>Выбери эффекты сетов</h2>
+    <div id="setEffectsLayoutDiv" class="flex">
+      <div id="setEffectsDisplayDiv" class="flex">
+        <div id="commonEffectsDiv" class="flex">Обычные эффекты</div>
+        <div id="planarEffectsDiv" class="flex">планарные эффекты</div>
+      </div>
+      <div id="planarAndCommonPickerDiv" class="flex">
+        <div class="characters-grid-container">
+          <div class="grid-item" *ngFor="let item of allSetEffects">
+            <img src="{{ item.img }}" alt="{{ item.name }}" width="90px" height="90px" />
+          </div>
+        </div>
+        <div>Планарные сеты</div>
+      </div>
+    </div>
   </div>
 </div>

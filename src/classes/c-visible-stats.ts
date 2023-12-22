@@ -5,9 +5,11 @@ import { IConditionalEffect } from "src/interfaces/i-conditional-effect";
 import { IVisibleStats } from "src/interfaces/i-visible-stats";
 import { CBaseStatsCombined } from "./c-base-stats-combined";
 import { CCharacter } from "./c-character";
+import { CCombinedSetEffect } from "./c-combined-set-effect";
 import { CEffectorsAndValues } from "./c-effectors-and-values";
 import { CLightcone } from "./c-lightcone";
 import { CRelicSet } from "./c-relic-set";
+import { CSet } from "./c-set";
 
 export class CStatsCalculator {
   // Базовые статы
@@ -25,6 +27,7 @@ export class CStatsCalculator {
   allEffectors: CEffectorsAndValues;
 
   currentLC: CLightcone;
+  currentSetsEffects: CCombinedSetEffect;
 
   conditionalEffects: IConditionalEffect[] = [];
 
@@ -40,6 +43,7 @@ export class CStatsCalculator {
 
     this.allEffectors = new CEffectorsAndValues();
     this.currentLC = new CLightcone();
+    this.currentSetsEffects = new CCombinedSetEffect();
   }
 
   setStatsFromCharacter(char: CCharacter) {

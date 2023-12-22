@@ -7,6 +7,7 @@ export class CSet {
   type: ESetTypes;
   twoPieceEffects: CSetEffect;
   fourPieceEffects: CSetEffect;
+  img: string;
 
   constructor();
   constructor(data: CSet);
@@ -16,6 +17,7 @@ export class CSet {
       this.type = ESetTypes.common;
       this.twoPieceEffects = new CSetEffect();
       this.fourPieceEffects = new CSetEffect();
+      this.img = "";
       return;
     }
 
@@ -23,5 +25,6 @@ export class CSet {
     this.type = data.type;
     this.twoPieceEffects = data.twoPieceEffects;
     this.fourPieceEffects = data.fourPieceEffects;
+    this.img = data.img;
   }
 }
