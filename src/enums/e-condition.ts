@@ -4,4 +4,5 @@ export enum ECondition {
   useUltimate,
   useFollowUp,
   changedSetEfefcts,
+  statChangedSpd,
 }

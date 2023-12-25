@@ -8,11 +8,15 @@
       </div>
       <div id="planarAndCommonPickerDiv" class="flex">
         <div class="characters-grid-container">
-          <div class="grid-item" *ngFor="let item of allSetEffects">
+          <div class="grid-item" *ngFor="let item of allSetEffects | setEffectTypeFilter : 0">
             <img src="{{ item.img }}" alt="{{ item.name }}" width="90px" height="90px" />
           </div>
         </div>
-        <div>Планарные сеты</div>
+        <div class="characters-grid-container">
+          <div class="grid-item" *ngFor="let item of allSetEffects | setEffectTypeFilter : 1">
+            <img src="{{ item.img }}" alt="{{ item.name }}" width="90px" height="90px" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
